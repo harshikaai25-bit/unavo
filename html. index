@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Food Waste Management System</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f8f5;
+            color: #333;
+        }
+
+        /* NAVBAR */
+
+        header {
+            background: #198754;
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 24px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #d7ffe4;
+        }
+
+
+        /* HERO */
+
+        .hero {
+            background: linear-gradient(
+                135deg,
+                #e4f8ea,
+                #ffffff
+            );
+
+            padding: 70px 8%;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 45px;
+            color: #146c43;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            max-width: 750px;
+            margin: auto;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+
+        /* FORM SECTION */
+
+        .form-section {
+            padding: 60px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #146c43;
+            font-size: 32px;
+            margin-bottom: 40px;
+        }
+
+        .form-container {
+
+            max-width: 900px;
+
+            margin: auto;
+
+            background: white;
+
+            padding: 40px;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 5px 25px
+                rgba(0,0,0,0.1);
+        }
+
+
+        /* FORM GRID */
+
+        .form-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 25px;
+        }
+
+
+        .form-group {
+
+            display: flex;
+
+            flex-direction: column;
+        }
+
+
+        .form-group label {
+
+            font-weight: bold;
+
+            margin-bottom: 8px;
+
+            color: #333;
+        }
+
+
+        input,
+        select,
+        textarea {
+
+            padding: 13px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 7px;
+
+            font-size: 15px;
+
+            width: 100%;
+        }
+
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+
+            outline: none;
+
+            border-color: #198754;
+        }
+
+
+        textarea {
+
+            resize: vertical;
+
+            min-height: 100px;
+        }
+
+
+        .full {
+
+            grid-column: 1 / 3;
+        }
+
+
+        /* BUTTON */
+
+        .submit-area {
+
+            text-align: center;
+
+            margin-top: 30px;
+        }
+
+
+        .btn {
+
+            background: #198754;
+
+            color: white;
+
+            border: none;
+
+            padding: 15px 35px;
+
+            border-radius: 8px;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        .btn:hover {
+
+            background: #146c43;
+        }
+
+
+        /* RESULT */
+
+        #result {
+
+            display: none;
+
+            margin-top: 30px;
+
+            padding: 25px;
+
+            background: #e8f8ee;
+
+            border-left:
+                5px solid #198754;
+
+            border-radius: 8px;
+        }
+
+
+        #result h3 {
+
+            color: #146c43;
+
+            margin-bottom: 15px;
+        }
+
+
+        #result p {
+
+            margin: 8px 0;
+
+            line-height: 1.5;
+        }
+
+
+        /* FEATURES */
+
+        .features {
+
+            padding: 60px 8%;
+
+            background: #ffffff;
+        }
+
+
+        .cards {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 20px;
+        }
+
+
+        .card {
+
+            background: #f4f8f5;
+
+            padding: 30px 20px;
+
+            text-align: center;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 4px 15px
+                rgba(0,0,0,0.06);
+        }
+
+
+        .card .icon {
+
+            font-size: 45px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .card h3 {
+
+            color: #198754;
+
+            margin-bottom: 10px;
+        }
+
+
+        .card p {
+
+            color: #666;
+
+            line-height: 1.5;
+        }
+
+
+        /* FOOTER */
+
+        footer {
+
+            background: #103c27;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 25px;
+
+            margin-top: 40px;
+        }
+
+
+        /* MOBILE */
+
+        @media(max-width: 800px) {
+
+            header {
+
+                flex-direction: column;
+
+                gap: 15px;
+            }
+
+
+            nav a {
+
+                margin: 0 8px;
+
+                font-size: 14px;
+            }
+
+
+            .hero h2 {
+
+                font-size: 34px;
+            }
+
+
+            .form-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .full {
+
+                grid-column: 1;
+            }
+
+
+            .cards {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+        }
+
+
+        @media(max-width: 500px) {
+
+            .cards {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .form-container {
+
+                padding: 25px 18px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<header>
+
+    <h1>🌱 FoodWaste AI</h1>
+
+    <nav>
+
+        <a href="#home">Home</a>
+
+        <a href="#collect">Food Collection</a>
+
+        <a href="#features">Features</a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+    <h2>
+        AI-Based Food Waste Management
+    </h2>
+
+    <p>
+
+        Smart platform to collect food information,
+        analyze food quality and quantity,
+        predict food waste and manage food pickup
+        efficiently using Artificial Intelligence.
+
+    </p>
+
+</section>
+
+
+
+<!-- FOOD COLLECTION FORM -->
+
+<section class="form-section" id="collect">
+
+    <h2 class="section-title">
+
+        🍱 Food Collection Details
+
+    </h2>
+
+
+    <div class="form-container">
+
+
+        <form id="foodForm">
+
+
+            <div class="form-grid">
+
+
+                <!-- FOOD NAME -->
+
+                <div class="form-group">
+
+                    <label>
+                        Food Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="foodName"
+                        placeholder="Example: Rice, Biryani"
+                        required>
+
+                </div>
+
+
+
+                <!-- FOOD TYPE -->
+
+                <div class="form-group">
+
+                    <label>
+                        Food Type
+                    </label>
+
+                    <select id="foodType" required>
+
+                        <option value="">
+                            Select Food Type
+                        </option>
+
+                        <option value="vegetarian">
+                            Vegetarian
+                        </option>
+
+                        <option value="nonvegetarian">
+                            Non-Vegetarian
+                        </option>
+
+                        <option value="mixed">
+                            Mixed
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- PREPARING TIME -->
+
+                <div class="form-group">
+
+                    <label>
+                        🍳 Preparing Time
+                    </label>
+
+                    <input
+                        type="datetime-local"
+                        id="preparingTime"
+                        required>
+
+                </div>
+
+
+
+                <!-- COLLECTING TIME -->
+
+                <div class="form-group">
+
+                    <label>
+                        🕐 Collecting Time
+                    </label>
+
+                    <input
+                        type="datetime-local"
+                        id="collectingTime"
+                        required>
+
+                </div>
+
+
+
+                <!-- PICKUP LOCATION -->
+
+                <div class="form-group full">
+
+                    <label>
+                        📍 Pickup Location
+                    </label>
+
+                    <input
+                        type="text"
+                        id="location"
+                        placeholder="Enter pickup location"
+                        required>
+
+                </div>
+
+
+
+                <!-- FOOD QUALITY -->
+
+                <div class="form-group">
+
+                    <label>
+                        ⭐ Food Quality
+                    </label>
+
+                    <select id="quality" required>
+
+                        <option value="">
+                            Select Quality
+                        </option>
+
+                        <option value="excellent">
+                            Excellent
+                        </option>
+
+                        <option value="good">
+                            Good
+                        </option>
+
+                        <option value="average">
+                            Average
+                        </option>
+
+                        <option value="poor">
+                            Poor
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- FOOD QUANTITY -->
+
+                <div class="form-group">
+
+                    <label>
+                        ⚖️ Food Quantity (Kg)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="quantity"
+                        placeholder="Example: 25"
+                        min="0.1"
+                        step="0.1"
+                        required>
+
+                </div>
+
+
+
+                <!-- PEOPLE -->
+
+                <div class="form-group">
+
+                    <label>
+                        👥 Estimated Number of People
+                    </label>
+
+                    <input
+                        type="number"
+                        id="people"
+                        placeholder="Example: 50"
+                        min="1"
+                        required>
+
+                </div>
+
+
+
+                <!-- CONTACT -->
+
+                <div class="form-group">
+
+                    <label>
+                        📞 Contact Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="Enter contact number"
+                        required>
+
+                </div>
+
+
+
+                <!-- ADDITIONAL NOTES -->
+
+                <div class="form-group full">
+
+                    <label>
+                        📝 Additional Information
+                    </label>
+
+                    <textarea
+                        id="notes"
+                        placeholder="Enter any additional information about the food...">
+                    </textarea>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- SUBMIT -->
+
+            <div class="submit-area">
+
+                <button
+                    type="submit"
+                    class="btn">
+
+                    🤖 Analyze Food & Request Pickup
+
+                </button>
+
+            </div>
+
+
+        </form>
+
+
+
+        <!-- AI RESULT -->
+
+        <div id="result">
+
+            <h3>
+                🤖 AI Analysis Result
+            </h3>
+
+            <p id="wasteResult"></p>
+
+            <p id="qualityResult"></p>
+
+            <p id="pickupResult"></p>
+
+            <p id="recommendation"></p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- FEATURES -->
+
+<section class="features" id="features">
+
+    <h2 class="section-title">
+
+        🚀 System Features
+
+    </h2>
+
+
+    <div class="cards">
+
+
+        <div class="card">
+
+            <div class="icon">
+                🤖
+            </div>
+
+            <h3>
+                AI Prediction
+            </h3>
+
+            <p>
+                Predict food waste based on
+                quantity, quality and other
+                collected information.
+            </p>
+
+        </div>
+
+
+
+        <div class="card">
+
+            <div class="icon">
+                📍
+            </div>
+
+            <h3>
+                Pickup Location
+            </h3>
+
+            <p>
+                Collect food from the specified
+                location using pickup management.
+            </p>
+
+        </div>
+
+
+
+        <div class="card">
+
+            <div class="icon">
+                ⭐
+            </div>
+
+            <h3>
+                Food Quality
+            </h3>
+
+            <p>
+                Record food quality to determine
+                whether the food is suitable for
+                redistribution.
+            </p>
+
+        </div>
+
+
+
+        <div class="card">
+
+            <div class="icon">
+                ♻️
+            </div>
+
+            <h3>
+                Waste Reduction
+            </h3>
+
+            <p>
+                Reduce food waste and support
+                sustainable food management.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>
+        © 2026 AI-Based Food Waste Management System
+    </p>
+
+    <p>
+        Reduce Food Waste • Save Resources • Build a Sustainable Future 🌱
+    </p>
+
+</footer>
+
+
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+
+document
+.getElementById("foodForm")
+.addEventListener("submit", function(event) {
+
+
+    event.preventDefault();
+
+
+    /* GET VALUES */
+
+    let foodName =
+        document.getElementById("foodName").value;
+
+
+    let foodType =
+        document.getElementById("foodType").value;
+
+
+    let preparingTime =
+        document.getElementById("preparingTime").value;
+
+
+    let collectingTime =
+        document.getElementById("collectingTime").value;
+
+
+    let location =
+        document.getElementById("location").value;
+
+
+    let quality =
+        document.getElementById("quality").value;
+
+
+    let quantity =
+        parseFloat(
+            document.getElementById("quantity").value
+        );
+
+
+    let people =
+        parseInt(
+            document.getElementById("people").value
+        );
+
+
+    /*
+
+       DEMO AI CALCULATION
+
+       Later you can replace this
+       with your actual Machine Learning
+       model / Python backend.
+
+    */
+
+
+    let wastePercentage = 0.15;
+
+
+    if (quality === "excellent") {
+
+        wastePercentage = 0.08;
+
+    }
+
+    else if (quality === "good") {
+
+        wastePercentage = 0.12;
+
+    }
+
+    else if (quality === "average") {
+
+        wastePercentage = 0.20;
+
+    }
+
+    else if (quality === "poor") {
+
+        wastePercentage = 0.35;
+
+    }
+
+
+    let estimatedWaste =
+        quantity * wastePercentage;
+
+
+    estimatedWaste =
+        estimatedWaste.toFixed(2);
+
+
+    /* RESULT */
+
+    document.getElementById(
+        "result"
+    ).style.display = "block";
+
+
+    document.getElementById(
+        "wasteResult"
+    ).innerHTML =
+
+        "🍱 <strong>Food:</strong> "
+        + foodName
+        + "<br><br>⚖️ <strong>Quantity:</strong> "
+        + quantity
+        + " Kg"
+        + "<br><br>🤖 <strong>Estimated Waste:</strong> "
+        + estimatedWaste
+        + " Kg";
+
+
+    document.getElementById(
+        "qualityResult"
+    ).innerHTML =
+
+        "⭐ <strong>Food Quality:</strong> "
+        + quality;
+
+
+    document.getElementById(
+        "pickupResult"
+    ).innerHTML =
+
+        "📍 <strong>Pickup Location:</strong> "
+        + location
+        + "<br><br>🕐 <strong>Collecting Time:</strong> "
+        + collectingTime;
+
+
+    let message;
+
+
+    if (quality === "excellent"
+        || quality === "good") {
+
+        message =
+            "✅ Food quality is suitable for redistribution. Pickup can be prioritized.";
+
+    }
+
+    else if (quality === "average") {
+
+        message =
+            "⚠️ Food should be inspected before redistribution.";
+
+    }
+
+    else {
+
+        message =
+            "❌ Food quality is low. Consider composting or safe disposal.";
+
+    }
+
+
+    document.getElementById(
+        "recommendation"
+    ).innerHTML =
+
+        "💡 <strong>AI Recommendation:</strong> "
+        + message;
+
+
+});
+
+
+</script>
+
+
+</body>
+
+</html>
